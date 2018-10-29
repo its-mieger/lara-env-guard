@@ -1,0 +1,25 @@
+{
+  "name": "its-mieger/lara-env-guard",
+  "description": "Implements checks for laravel applications so that tests are not run in undesired environments",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Christopher Mieger",
+      "email": "chris@you-th.de"
+    }
+  ],
+  "autoload": {
+    "psr-0": {
+      "": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-0": {
+      "": "test/"
+    }
+  },
+  "require-dev": {
+    "orchestra/testbench": "^3.5"
+  }
+}
