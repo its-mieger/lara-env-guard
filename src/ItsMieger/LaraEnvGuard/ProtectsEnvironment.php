@@ -97,6 +97,11 @@
 				if (empty($currConnectionName))
 					$currConnectionName = DB::getDefaultConnection();
 
+				// we ignore SQLite with memory database
+				if (config("database.connections.{$currConnectionName}.driver") === 'sqlite' && config("database.connections.{$currConnectionName}.database") === ':memory:')
+					continue;
+
+
 				$currHost = config("database.connections.{$currConnectionName}.host");
 
 				if (!Str::contains($currHost, $patterns))

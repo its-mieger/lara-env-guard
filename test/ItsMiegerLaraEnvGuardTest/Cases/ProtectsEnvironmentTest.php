@@ -766,6 +766,24 @@
 			$this->expectNotToPerformAssertions();
 		}
 
+		public function testCheckDatabaseHostWhitelisted_defaultConnection_defaultPatterns_notWhitelistedButSqlLiteMemory() {
+
+			/** @var Application|MockObject $appMock */
+			$appMock = $this->getMockBuilder(Application::class)->disableOriginalConstructor()->getMock();
+
+			$tc = new ProtectsEnvironmentTestClass($appMock);
+
+			// pattern "-dev"
+			app()['config']['database.connections.' . DB::getDefaultConnection() . '.host'] = '';
+			app()['config']['database.connections.' . DB::getDefaultConnection() . '.driver'] = 'sqlite';
+			app()['config']['database.connections.' . DB::getDefaultConnection() . '.database'] = ':memory:';
+
+			$tc->call('checkDatabaseHostWhitelisted');
+
+			$this->expectNotToPerformAssertions();
+
+		}
+
 		public function testCheckDatabaseHostWhitelisted_defaultConnection_defaultPatterns_notWhitelisted() {
 
 			/** @var Application|MockObject $appMock */
